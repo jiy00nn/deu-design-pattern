@@ -1,43 +1,43 @@
 /**
  * @packageName     : dto
- * @filewName       : UserDto.java
+ * @filewName       : ManagerDto.java
  * @author          : Jiyoon Bak
- * @date            : 2021.05.03
+ * @date            : 2021.05.07
  * @description     : MVC Patterns에서 사용하는 Model
  * =======================================================
  *      DATE         AUTHOR          NOTE
  * -------------------------------------------------------
- * 2021.05.03        JiYoon Bak     최초 생성
+ * 2021.05.07        JiYoon Bak     최초 생성
  */
 package dto;
 
 /**
- * User의 정보를 담고 있는 DTO class이다.
+ * Manger의 정보를 담고 있는 DTO class이다.
  */
-public class UserDto {
+public class ManagerDto {
     // ERD User table의 필드를 참고하여 선언
-    private int user_number;
+    private int manager_number;
     private String id;
     private String password;
     private String name;
     
-    public UserDto() {}
+    public ManagerDto() {}
     
     // 모든 필드의 값을 생성자의 인자로 전달 받는 생성자 generate
-    public UserDto(int user_number, String id, String password, String name){
+    public ManagerDto(int manager_number, String id, String password, String name){
         super();
-        this.user_number = user_number;
+        this.manager_number = manager_number;
         this.id = id;
         this.password = password;
         this.name = name;
     }
     
-    public int getUserNumber(){
-        return user_number;
+    public int getManagerNumber(){
+        return manager_number;
     }
     
-    public void setUserNumber(int user_number){
-        this.user_number = user_number;
+    public void setManagerNumber(int manager_number){
+        this.manager_number = manager_number;
     }
     
     public String getId(){

@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package db;
+package main;
 
 /**
  *
  * @author mkaid
  */
-public class DBClose {
-    
+public class Main {
+    public static void main(String[] args) {
+        
+    }
 }
