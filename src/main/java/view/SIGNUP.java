@@ -54,6 +54,7 @@ public class SIGNUP extends javax.swing.JFrame {
         signup.setText("회원가입");
 
         back.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
+        back.setText("뒤로가기");
         back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backActionPerformed(evt);

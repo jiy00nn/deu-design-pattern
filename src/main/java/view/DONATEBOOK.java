@@ -47,7 +47,7 @@ public class DONATEBOOK extends javax.swing.JFrame {
         jTextField1.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
 
         jButton1.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/magnifier.png"))); // NOI18N
+        jButton1.setText("검색");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -63,7 +63,7 @@ public class DONATEBOOK extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jButton2.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/back.png"))); // NOI18N
+        jButton2.setText("뒤로가기");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);

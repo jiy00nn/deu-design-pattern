@@ -76,7 +76,7 @@ public class SEARCHBOOK extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         back.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
-        back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/back.png"))); // NOI18N
+        back.setText("뒤로가기");
         back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backActionPerformed(evt);
