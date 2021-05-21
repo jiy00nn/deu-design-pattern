@@ -10,5 +10,6 @@ package dao;
  * @author wndgk
  */
 public interface Status {
-    public void status();
+    public void rent_button_pushed(BookStatus book);
+    public void retu_button_pushed(BookStatus book);
 }

@@ -7,16 +7,27 @@ package dao;
 
 /**
  *
- * @author wndgk
+ * @author anime
  */
 public class BookStatus {
-    private Status statu;
+    private Status status;
 
-    public void setStatu(Status statu) {
-        this.statu = statu;
+    // 생성자 : 형광등은 항상 꺼진 상태로 초기화
+    public BookStatus() {
+        status = ReturnBook.getInstance();
     }
-    
-    public void status(){
-        statu.status();
+
+    public void setState(Status status) {
+        this.status = status;
+    }
+
+    // 켜짐 작업 위임
+    public void rent_button_pushed() {
+        status.rent_button_pushed(this);
+    }
+
+    // 꺼짐 작업 위임
+    public void retu_button_pushed() {
+        status.retu_button_pushed(this);
     }
 }
