@@ -7,11 +7,28 @@ package dao;
 
 /**
  *
- * @author wndgk
+ * @author anime
  */
-public class BookRental implements Status{
+public class BookRental implements Status {
+        private static BookRental rent = new BookRental();
+
+    public BookRental() {
+
+    }
+
+    // 싱글턴 적용
+    public static BookRental getInstance() {
+        return rent;
+    }
+
     @Override
-    public void status(){
-        System.out.println("Book rental");
+    public void rent_button_pushed(BookStatus book) {
+        System.out.println("No Response");
+    }
+
+    @Override
+    public void retu_button_pushed(BookStatus book) {
+        book.setState(ReturnBook.getInstance());
+        System.out.println("Return Book");
     }
 }
