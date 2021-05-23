@@ -15,7 +15,7 @@ package dto;
  * BookDto의 정보를 담고 있는 DTO class이다.
  */
 public class BookDto {
-    private String id;
+    private int id;
     private String title;
     private String genre;
     private String author;
@@ -25,7 +25,7 @@ public class BookDto {
     public BookDto() {}
     
     // 모든 필드의 값을 생성자의 인자로 전달 받는 생성자 generate
-    public BookDto(String id, String title, String genre, String author, String status, int count){
+    public BookDto(int id, String title, String genre, String author, String status, int count){
         super();
         this.id = id;
         this.title = title;
@@ -35,11 +35,11 @@ public class BookDto {
         this.count = count;
     }
     
-    public String getId(){
+    public int getId(){
         return id;
     }
     
-    public void setId(String id){
+    public void setId(int id){
         this.id = id;
     }
     
