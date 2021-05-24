@@ -59,7 +59,7 @@ public class BookDao {
     
     
     
-  public int ModifyBook(){
+  public int ModifyBook() throws SQLException{
         int result = 0;
 
 
@@ -102,40 +102,27 @@ public class BookDao {
             pstm.setInt(2,modify_id);
             break;
             case "4":
-
-            System.out.println("수정할 id를 입력하세요:");
-            int modify_id=sc.nextInt();
-            System.out.print("수정할 항목을 선택하세요. 1.상태 2.수량");
-            String input = sc.nextLine();
-            switch(input){
-                case "1":
-            System.out.println("수정할 상태를 입력하세요:");
+                 System.out.println("수정할 상태를 입력하세요:");
             String modify_status = sc.nextLine();
             sql.append("UPDATE Book SET status = ? WHERE id=?");
             pstm = conn.prepareStatement(sql.toString());
             pstm.setString(1, modify_status);
             pstm.setInt(2,modify_id);
             break;
-            case "5":
-                 case "2":
-            System.out.println("수정할 수량을 입력하세요:");
-            String modify_conut = sc.nextLine();
+             case "5":
+                 System.out.println("수정할 상태를 입력하세요:");
+            String modify_count = sc.nextLine();
             sql.append("UPDATE Book SET count = ? WHERE id=?");
             pstm = conn.prepareStatement(sql.toString());
-            pstm.setString(1, modify_conut);
+            pstm.setString(1, modify_count);
             pstm.setInt(2,modify_id);
             break;
-                 default:
+             default:
             System.out.println("수정할 정보를 다시 확인하세요");
             break;
             }
-            result = pstm.executeUpdate();
-            if (result > 0) {
-                System.out.println(result + "개의 행이 수정되었습니다.");
-            }else {
-                System.out.println("실패했습니다.");
-            }
-        } catch (SQLException e) {
+     
+        }catch (SQLException e) {
             e.printStackTrace();
         } finally {
             if (rs != null) try { rs.close(); } catch(Exception e) {}
@@ -146,11 +133,10 @@ public class BookDao {
         return result;
     }
   
-  }
+    }
   
   
-  
-  
+
   
   
   

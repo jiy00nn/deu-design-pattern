@@ -10,12 +10,13 @@
  * 2021.05.07        JiYoon Bak     최초 생성
  */
 package dto;
+import java.util.UUID;
 
 /**
  * BookDto의 정보를 담고 있는 DTO class이다.
  */
 public class BookDto {
-    private int id;
+    private UUID id;
     private String title;
     private String genre;
     private String author;
@@ -24,7 +25,7 @@ public class BookDto {
     public BookDto(){}
     
     // 모든 필드의 값을 생성자의 인자로 전달 받는 생성자 generate
-    public BookDto(int id, String title, String genre, String author, String status, int count){
+    public BookDto(UUID id, String title, String genre, String author, String status, int count){
         super();
         this.id = id;
         this.title = title;
@@ -34,18 +35,18 @@ public class BookDto {
         this.count = count;
     }
     
-       public BookDto(int id, String title, String genre, String author){
+       public BookDto(UUID id, String title, String genre, String author){
         super();
         this.id = id;
         this.title = title;
         this.genre = genre;
         this.author = author;
     }
-    public int getId(){
-        return id;
+    public String getId(){
+        return id.toString();
     }
     
-    public void setId(int id){
+    public void setId(UUID id){
         this.id = id;
     }
     
