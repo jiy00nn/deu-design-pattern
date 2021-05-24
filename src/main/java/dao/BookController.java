@@ -1,7 +1,9 @@
+
 package dao;
 import dto.BookDto;
 import dao.BookDao;
 import view.TestView;
+import java.util.UUID;
 /**
  *
  * @author ysj62
@@ -25,6 +27,7 @@ public class BookController {
                 if(bookdto.getId()==(bookdao.book.get(i).getId())){
                     result = false;
                     System.out.println("이미 사용중인 아이디입니다.");
+                    System.out.println("This ID is already in use.");
                     break;
                 }
             }
@@ -50,10 +53,12 @@ public class BookController {
                 }
                 if(result){ // 있다는걸 확인하고 바꾼다.
                 bookdao.ModifyBook();
-                }
+            result = false;
+                //데이터베이스가 공백인지 확인하기 위한 조건문
+      
             }
             return result;
  }
- 
- 
+
+
 }

@@ -19,6 +19,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * DB를 사용해 User Table의 데이터를 조회하거나 조작하는 기능을 구현한 클래스
