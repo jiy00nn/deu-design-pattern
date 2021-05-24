@@ -42,8 +42,8 @@ public class BookDto {
         this.genre = genre;
         this.author = author;
     }
-    public String getId(){
-        return id.toString();
+    public UUID getId(){
+        return id;
     }
     
     public void setId(UUID id){
