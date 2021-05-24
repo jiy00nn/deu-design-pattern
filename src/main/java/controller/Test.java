@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package controller;
-import dto.Bookdto;
+import dto.BookDto;
 
 public class Test {
     public static void main(String[] args) {

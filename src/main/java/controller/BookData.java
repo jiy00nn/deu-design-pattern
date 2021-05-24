@@ -5,7 +5,7 @@
  */
 package controller;
 import java.util.*;
-import dto.Bookdto;
+import dto.BookDto;
 
 public class BookData implements Subject {
 
@@ -14,7 +14,7 @@ public class BookData implements Subject {
   }
 
   private List<Observer> observers;
-    private int id;
+    private UUID id;
     private String title;
     private String genre;
     private String author;
@@ -47,7 +47,7 @@ public class BookData implements Subject {
   }
 
 
-  public void setMeasurements(int id, String title, String genre,String author,String status,int count) {
+  public void setMeasurements(UUID id, String title, String genre,String author,String status,int count) {
         this.id = id;
         this.title = title;
         this.genre = genre;
