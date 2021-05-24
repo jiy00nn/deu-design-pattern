@@ -49,6 +49,11 @@ public class M_danate_add extends javax.swing.JFrame {
         jLabel1.setText("도서기증");
 
         jButton2.setText("추가");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("뒤로가기");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -154,6 +159,12 @@ public class M_danate_add extends javax.swing.JFrame {
         M_donate dona = new M_donate();
         dona.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
