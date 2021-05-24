@@ -6,6 +6,7 @@ import dto.UserDto;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.UUID;
 
 public class BookDao {
     private static BookDao bookDao;
@@ -21,7 +22,7 @@ public class BookDao {
         return bookDao;
     }
          
-    public int UpdataData(int id, String title, String genre, String author, String status, int count ){ //추가기능
+    public int UpdataData(UUID id, String title, String genre, String author, String status, int count ){ //추가기능
  
         int result = 0;
         Connection conn = db.connectDB();
@@ -34,7 +35,7 @@ public class BookDao {
         try{
             pstm = conn.prepareStatement(sql.toString());
             
-             pstm.setInt(1, id);
+             pstm.setString(1, id.toString());
              pstm.setString(2, title);
              pstm.setString(3, genre);
              pstm.setString(4, author);
@@ -59,7 +60,7 @@ public class BookDao {
     
     
     
-  public int ModifyBook() throws SQLException{
+  public int ModifyBook() {
         int result = 0;
 
 
@@ -102,7 +103,7 @@ public class BookDao {
             pstm.setInt(2,modify_id);
             break;
             case "4":
-                 System.out.println("수정할 상태를 입력하세요:");
+            System.out.println("수정할 상태를 입력하세요:");
             String modify_status = sc.nextLine();
             sql.append("UPDATE Book SET status = ? WHERE id=?");
             pstm = conn.prepareStatement(sql.toString());

@@ -32,7 +32,7 @@ public class BookController {
                 }
             }
             if(result){     //입력받은 아이디가 사용가능한 아이디일 경우
-                bookdao.UpdataData( bookdto.getId(), bookdto.getTitle(), bookdto.getGenre(),bookdto.getAuthor(),bookdto.getStatus(),bookdto.getCount());
+                bookdao.UpdataData( bookdto.getId(),bookdto.getTitle(), bookdto.getGenre(),bookdto.getAuthor(),bookdto.getStatus(),bookdto.getCount());
                 System.out.println("update success");
             }
         }
@@ -51,14 +51,12 @@ public class BookController {
                     result = false;
                     break;
                 }
-                if(result){ // 있다는걸 확인하고 바꾼다.
+                else if(result){ // 있다는걸 확인하고 바꾼다.
                 bookdao.ModifyBook();
-            result = false;
-                //데이터베이스가 공백인지 확인하기 위한 조건문
-      
             }
-            return result;
+            
+
+}
+   return result;         
  }
-
-
 }
