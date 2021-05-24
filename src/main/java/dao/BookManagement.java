@@ -18,7 +18,8 @@ public class BookManagement implements ManagementStrategy{
  
     @Override
     public void modify(){
-        System.out.println("Modify book");
-      //수정 update set//값이 있는지 확인
+        BookDao bookDao = new BookDao();
+        bookDao.ModifyBook();
+        System.out.println("Modify book");//수정 update set//값이 있는지 확인
     }
 }

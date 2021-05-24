@@ -1,6 +1,5 @@
 
 package dao;
-
 import dto.BookDto;
 import db.DBConnection;
 import dto.UserDto;
@@ -62,7 +61,9 @@ public class BookDao {
     
   public int ModifyBook(){
         int result = 0;
-            Connection conn = db.connectDB();
+
+
+        Connection conn = db.connectDB();
         PreparedStatement pstm = null;
         ResultSet rs = null;
         
@@ -101,6 +102,13 @@ public class BookDao {
             pstm.setInt(2,modify_id);
             break;
             case "4":
+
+            System.out.println("수정할 id를 입력하세요:");
+            int modify_id=sc.nextInt();
+            System.out.print("수정할 항목을 선택하세요. 1.상태 2.수량");
+            String input = sc.nextLine();
+            switch(input){
+                case "1":
             System.out.println("수정할 상태를 입력하세요:");
             String modify_status = sc.nextLine();
             sql.append("UPDATE Book SET status = ? WHERE id=?");
@@ -109,6 +117,7 @@ public class BookDao {
             pstm.setInt(2,modify_id);
             break;
             case "5":
+                 case "2":
             System.out.println("수정할 수량을 입력하세요:");
             String modify_conut = sc.nextLine();
             sql.append("UPDATE Book SET count = ? WHERE id=?");
@@ -137,7 +146,7 @@ public class BookDao {
         return result;
     }
   
-}
+  }
   
   
   
