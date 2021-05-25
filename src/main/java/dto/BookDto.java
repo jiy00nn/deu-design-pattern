@@ -35,6 +35,7 @@ public class BookDto {
         this.count = count;
     }
     
+
        public BookDto(UUID id, String title, String genre, String author){
         super();
         this.id = id;
@@ -42,6 +43,7 @@ public class BookDto {
         this.genre = genre;
         this.author = author;
     }
+
     public UUID getId(){
         return id;
     }
