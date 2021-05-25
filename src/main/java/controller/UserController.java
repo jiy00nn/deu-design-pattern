@@ -60,7 +60,7 @@ public class UserController {
             }
             if(result){     //입력받은 아이디가 사용가능한 아이디일 경우
                 num = userdao.user.size() + 1;
-                userdao.InputData(num, userdto.getId(), userdto.getPassword(), userdto.getName());
+                userdao.InputData(num, userdto.getId(), userdto.getPassword(), userdto.getName());                
                 System.out.println("Singup success");
             }
         }
@@ -70,5 +70,19 @@ public class UserController {
         }
         
         return result;
+    }
+    
+    public void FindPassword(){
+        for(int i = 0; i < userdao.user.size(); i++){
+            if(userdao.user.get(i).getId().equals(userdto.getId())){
+                System.out.println("Find");
+                System.out.println(userdao.user.get(i).getPassword());
+                break;
+            }
+        }
+    }
+    
+    public void ChangeInfo(){
+        userdao.UpdateData(userdto.getUserNumber(), userdto.getPassword(), userdto.getName());
     }
 }
