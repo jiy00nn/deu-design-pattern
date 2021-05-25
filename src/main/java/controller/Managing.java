@@ -18,7 +18,7 @@ package controller;
 public abstract class Managing {
     private String name;
     private SearchStrategy searchStrategy;
-//    private ManagementStrategy managementStrategy;
+    private ManagementStrategy managementStrategy;
     
     public Managing(String name){
         this.name = name;

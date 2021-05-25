@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package controller;
 
 /**
  *
  * @author wndgk
  */
-public interface ManagementStrategy {
-    public void update();
-    public void modify();
+public class Manager extends Managing{
+    public Manager(String name){
+        super(name);
+    }
 }

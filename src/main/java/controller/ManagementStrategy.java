@@ -3,15 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package controller;
 
 /**
  *
  * @author wndgk
  */
-public class BookSearch implements SearchStrategy{
-    @Override
-    public void search(){
-        System.out.println("Search book");
-    }
+public interface ManagementStrategy {
+    public void update();
+    public void modify();
 }

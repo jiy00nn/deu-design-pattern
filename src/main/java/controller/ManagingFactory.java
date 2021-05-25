@@ -3,15 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package controller;
 
-import StrategyPattern.BookManagement;
-import StrategyPattern.BookSearch;
-import StrategyPattern.Manager;
-import StrategyPattern.Managing;
-import StrategyPattern.MemberManagement;
-import StrategyPattern.MemberSearch;
-import StrategyPattern.User;
 
 /**
  *

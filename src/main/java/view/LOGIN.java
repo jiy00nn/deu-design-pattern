@@ -5,12 +5,19 @@
  */
 package view;
 
+import controller.UserController;
+import dao.UserDao;
+import dto.UserDto;
+
 /**
  *
  * @author anime
  */
 public class LOGIN extends javax.swing.JFrame {
-
+     UserDao  userdao = new UserDao();
+     UserDto  userdto = new UserDto();
+     TestView testview = new TestView();        
+     UserController usercontrol = new UserController(userdto, userdao, testview);
     /**
      * Creates new form login
      */
@@ -140,7 +147,7 @@ public class LOGIN extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void pwActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:        
     }//GEN-LAST:event_pwActionPerformed
 
     private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
@@ -149,6 +156,16 @@ public class LOGIN extends javax.swing.JFrame {
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         // TODO add your handling code here:
+        userdto.setId(id.getText());
+        userdto.setPassword(pw.getText());
+        if(usercontrol.Login()){
+            System.out.println("Login success");
+            System.out.println(id.getText());
+            System.out.println(pw.getText());
+            MAIN main = new MAIN();
+            main.setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_loginActionPerformed
 
     private void findpwActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findpwActionPerformed

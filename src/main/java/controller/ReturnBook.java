@@ -3,15 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package controller;
+
+import java.util.UUID;
 
 /**
  *
  * @author wndgk
  */
-public class MemberSearch implements SearchStrategy{
+public class ReturnBook implements Status{
     @Override
-    public void search(){
-        System.out.println("Search Member");
+    public void status(){
+        System.out.println("Return book");
     }
 }

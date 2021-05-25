@@ -5,12 +5,14 @@
  */
 package view;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author anime
  */
 public class SIGNUP extends javax.swing.JFrame {
-
+    LOGIN login = new LOGIN();
     /**
      * Creates new form SIGNUP
      */
@@ -52,6 +54,11 @@ public class SIGNUP extends javax.swing.JFrame {
 
         signup.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
         signup.setText("회원가입");
+        signup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signupActionPerformed(evt);
+            }
+        });
 
         back.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
         back.setText("뒤로가기");
@@ -124,12 +131,33 @@ public class SIGNUP extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         LOGIN l = new LOGIN();
         l.setVisible(true);
         dispose();
     }//GEN-LAST:event_backActionPerformed
+
+    private void signupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupActionPerformed
+        // TODO add your handling code here:
+        if(name.getText().length() <= 4){
+            login.userdto.setId(id.getText());
+            login.userdto.setPassword(pw.getText());
+            login.userdto.setName(name.getText());
+            if(login.usercontrol.Signup()){
+                JOptionPane.showMessageDialog(null, "회원가입 성공");
+                LOGIN l = new LOGIN();
+                l.setVisible(true);
+                dispose();
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "이미 사용중인 아이디입니다.");
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "이름은 4글자 이하이어야합니다.");
+        }
+    }//GEN-LAST:event_signupActionPerformed
 
     /**
      * @param args the command line arguments
