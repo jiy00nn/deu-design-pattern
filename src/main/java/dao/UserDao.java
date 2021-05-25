@@ -138,4 +138,31 @@ public class UserDao {
             if (conn != null) try { conn.close(); } catch(Exception e) {}
         }
     }
+    
+    public void UpdateData(int user_number, String password, String name){
+        int result = 0;
+        Connection conn = db.connectDB();        
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        
+        StringBuffer sql = new StringBuffer();
+        sql.append("UPDATE USER SET password = ?, name = ? WHERE user_number =?");
+        
+        // 기능 생성시 아래와 같은 구조를 사용하여 close()를 해주어야 합니다.
+        try{
+            pstm = conn.prepareStatement(sql.toString());            
+            
+            pstm.setString(1, password);
+            pstm.setString(2, name);
+            pstm.setInt(3, user_number);
+            
+           result = pstm.executeUpdate();                      
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) try { rs.close(); } catch(Exception e) {}
+            if (pstm != null) try { pstm.close(); } catch(Exception e) {}
+            if (conn != null) try { conn.close(); } catch(Exception e) {}
+        }
+    }
 }
