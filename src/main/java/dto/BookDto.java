@@ -11,6 +11,7 @@
  */
 package dto;
 import java.util.UUID;
+
 /**
  * BookDto의 정보를 담고 있는 DTO class이다.
  */
@@ -21,8 +22,7 @@ public class BookDto {
     private String author;
     private String status;
     private int count;
-    
-    public BookDto() {}
+    public BookDto(){}
     
     // 모든 필드의 값을 생성자의 인자로 전달 받는 생성자 generate
     public BookDto(UUID id, String title, String genre, String author, String status, int count){
@@ -35,6 +35,15 @@ public class BookDto {
         this.count = count;
     }
     
+
+       public BookDto(UUID id, String title, String genre, String author){
+        super();
+        this.id = id;
+        this.title = title;
+        this.genre = genre;
+        this.author = author;
+    }
+
     public UUID getId(){
         return id;
     }

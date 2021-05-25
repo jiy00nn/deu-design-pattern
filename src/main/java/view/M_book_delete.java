@@ -42,6 +42,11 @@ public class M_book_delete extends javax.swing.JFrame {
         jButton1.setText("검색");
 
         jButton3.setText("삭제");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("뒤로가기");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -109,6 +114,10 @@ public class M_book_delete extends javax.swing.JFrame {
         M_book book = new M_book();
         book.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
