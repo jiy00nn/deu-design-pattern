@@ -5,7 +5,7 @@
  */
 package controller;
 import java.util.*;
-import dto.BookDto; 
+import dto.BookDto;
 
 public class BookData implements Subject {
 
