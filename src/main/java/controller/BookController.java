@@ -21,28 +21,6 @@ public class BookController {
         this.bookdao = bookdao;
     }
 
-    public boolean BookStatus() {
-        boolean result = false;
-
-        if (!bookdao.book.isEmpty()) {
-            for (int i = 0; i < bookdao.book.size(); i++) {
-                if (bookdao.book.get(i).getId().equals(bookdto.getId())) {
-                    if (bookdto.getStatus().equals("true")) {
-                        bookdto.setStatus("false");
-                        bookdto.setCount(0);
-                        bookdao.UpdateData(bookdto.getId(), bookdto.getStatus(), bookdto.getCount());
-                        result = true;
-                    } else if (bookdto.getStatus().equals("false")) {
-                        bookdto.setStatus("true");
-                        bookdto.setCount(0);
-                        bookdao.UpdateData(bookdto.getId(), bookdto.getStatus(), bookdto.getCount());
-                        result = true;
-                    }
-                }
-            }
-        }
-        return result;
-    }
 
     public boolean Upate() { //추가
         boolean result = true;

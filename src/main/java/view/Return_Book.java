@@ -5,27 +5,32 @@
  */
 package view;
 
-import controller.BookRental;
+import controller.ReturnBook;
 import controller.BookStatus;
 import static controller.UserController.flag;
 import dao.BookDao;
+import dao.CheckoutBookDao;
+import dao.UserDao;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author eocjs
  */
-public class Rental extends javax.swing.JFrame {
+public class Return_Book extends javax.swing.JFrame {
+
     LOGIN login = new LOGIN();
+
     /**
      * Creates new form Rental
      */
-    public Rental() {
+    public Return_Book() {
         initComponents();
     }
 
@@ -49,11 +54,11 @@ public class Rental extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         back = new javax.swing.JButton();
-        genre = new javax.swing.JTextField();
+        user_id = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        author = new javax.swing.JTextField();
+        user_name = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        rental = new javax.swing.JButton();
+        return_button = new javax.swing.JButton();
 
         jLabel3.setText("jLabel3");
 
@@ -82,15 +87,16 @@ public class Rental extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("장르");
+        jLabel7.setText("대여자ID");
 
-        jLabel8.setText("저자");
+        jLabel8.setText("대여자 이름");
 
-        rental.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
-        rental.setText("대여하기");
-        rental.addActionListener(new java.awt.event.ActionListener() {
+        return_button.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
+        return_button.setText("반납하기");
+        return_button.setActionCommand("반납하기");
+        return_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rentalActionPerformed(evt);
+                return_buttonActionPerformed(evt);
             }
         });
 
@@ -109,33 +115,24 @@ public class Rental extends javax.swing.JFrame {
                                 .addComponent(BookId, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(check))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(return_date))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
                                     .addComponent(jLabel4)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(rental_date))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGap(6, 6, 6)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel7)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(genre))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel2)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel8)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(author, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel2))
+                                .addGap(7, 7, 7)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(user_name, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                                        .addComponent(return_date)
+                                        .addComponent(rental_date)
+                                        .addComponent(user_id)))))
                         .addGap(40, 40, 40))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(rental, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(return_button, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
@@ -154,11 +151,11 @@ public class Rental extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(genre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(user_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(author, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(user_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -171,7 +168,7 @@ public class Rental extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(back, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                    .addComponent(rental, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
+                    .addComponent(return_button, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -186,42 +183,54 @@ public class Rental extends javax.swing.JFrame {
 
     private void checkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkActionPerformed
         // TODO add your handling code here:               
+        UserDao userdao = new UserDao();
         BookDao bookdao = new BookDao();
+        CheckoutBookDao cobdao = new CheckoutBookDao();
         SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
-        Calendar cal = new GregorianCalendar();
-        Date date = new Date(cal.getTimeInMillis());
-        cal.add(Calendar.DATE, +6);
-        Date date2 = new Date(cal.getTimeInMillis());
-        for(int i = 0; i < bookdao.book.size(); i++){
-            if(bookdao.book.get(i).getId().toString().equals(BookId.getText())){
-                title.setText(bookdao.book.get(i).getTitle());
-                genre.setText(bookdao.book.get(i).getGenre());
-                author.setText(bookdao.book.get(i).getAuthor());
-                rental_date.setText(fm.format(date));
-                return_date.setText(fm.format(date2));
+        UUID user_num = null;
+        UUID book_id = null;
+
+        for (int i = 0; i < cobdao.checkout.size(); i++) {
+            if (cobdao.checkout.get(i).getBookId().toString().equals(BookId.getText())) {
+                user_num = cobdao.checkout.get(i).getUserId();
+                book_id = cobdao.checkout.get(i).getBookId();
+                rental_date.setText(fm.format(cobdao.checkout.get(i).getRental_date()));
+                return_date.setText(fm.format(cobdao.checkout.get(i).getReturn_date()));
+                break;
             }
         }
-        System.out.println(date);
-        System.out.println(date2);
-        
+        for (int i = 0; i < bookdao.book.size(); i++) {
+            if (bookdao.book.get(i).getId().equals(book_id)) {
+                title.setText(bookdao.book.get(i).getTitle());
+                break;
+            }
+        }
+        for (int i = 0; i < userdao.user.size(); i++) {
+            if (userdao.user.get(i).getUser_number().equals(user_num)) {
+                user_id.setText(userdao.user.get(i).getId());
+                user_name.setText(userdao.user.get(i).getName());
+            }
+        }
     }//GEN-LAST:event_checkActionPerformed
 
-    private void rentalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rentalActionPerformed
-        // TODO add your handling code here:
-        BookRental rental = new BookRental();
-        BookStatus bookstatus = new BookStatus(); 
-        Calendar cal = new GregorianCalendar();
-        Date date = new Date(cal.getTimeInMillis());
-        cal.add(Calendar.DATE, +6);
-        Date date2 = new Date(cal.getTimeInMillis());
-        bookstatus.setStatu(rental);
-        if(bookstatus.status(login.userdao.user.get(flag).getUser_number(), UUID.fromString(BookId.getText()), date, date2)){
-            JOptionPane.showMessageDialog(null, "대여하였습니다.");
+    private void return_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_return_buttonActionPerformed
+        try {
+            // TODO add your handling code here:
+            ReturnBook returnbook = new ReturnBook();
+            BookStatus bookstatus = new BookStatus();
+            SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");            
+            Date date = fm.parse(rental_date.getText());
+            Date date2 = fm.parse(return_date.getText());
+            bookstatus.setStatu(returnbook);
+            if (bookstatus.status(login.userdao.user.get(flag).getUser_number(), UUID.fromString(BookId.getText()), date, date2)) {
+                JOptionPane.showMessageDialog(null, "반납하였습니다.");
+            } else {
+                JOptionPane.showMessageDialog(null, "도서 정보를 확인하세요");
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(ReturnBook.class.getName()).log(Level.SEVERE, null, ex);
         }
-        else{
-            JOptionPane.showMessageDialog(null, "도서 정보를 확인하세요");
-        }
-    }//GEN-LAST:event_rentalActionPerformed
+    }//GEN-LAST:event_return_buttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -240,30 +249,31 @@ public class Rental extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Rental.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReturnBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Rental.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReturnBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Rental.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReturnBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Rental.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReturnBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Rental().setVisible(true);
+                new Return_Book().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField BookId;
-    private javax.swing.JTextField author;
     private javax.swing.JButton back;
     private javax.swing.JButton check;
-    private javax.swing.JTextField genre;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -271,9 +281,11 @@ public class Rental extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JButton rental;
     private javax.swing.JTextField rental_date;
+    private javax.swing.JButton return_button;
     private javax.swing.JTextField return_date;
     private javax.swing.JTextField title;
+    private javax.swing.JTextField user_id;
+    private javax.swing.JTextField user_name;
     // End of variables declaration//GEN-END:variables
 }

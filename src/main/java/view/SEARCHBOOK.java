@@ -5,12 +5,16 @@
  */
 package view;
 
+import dto.BookDto;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author anime
  */
 public class SEARCHBOOK extends javax.swing.JFrame {
-
+    MAIN main = new MAIN();
     /**
      * Creates new form SEARCHBOOK
      */
@@ -52,7 +56,7 @@ public class SEARCHBOOK extends javax.swing.JFrame {
         searchtext.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
 
         search.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
-        search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/magnifier.png"))); // NOI18N
+        search.setText("검색");
         search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchActionPerformed(evt);
@@ -64,13 +68,19 @@ public class SEARCHBOOK extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {"", null, "", null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "도서번호", "제목", "장르", "저자", "대여여부", "수량"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -144,10 +154,17 @@ public class SEARCHBOOK extends javax.swing.JFrame {
     }//GEN-LAST:event_backActionPerformed
 
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
-
-
+        ArrayList<BookDto> printlist = main.managing.Search(searchtext.getText(), "");
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setNumRows(0);        
+        for(int i = 0; i < printlist.size(); i++){
+            Object[] row = {printlist.get(i).getId(), printlist.get(i).getTitle(), printlist.get(i).getGenre(), printlist.get(i).getAuthor(), printlist.get(i).getStatus(), printlist.get(i).getCount()};
+            model.addRow(row);
+        }        
+        jTable1.setModel(model);
+//        main.managing.Search(searchtext.getText(), "");                
     }//GEN-LAST:event_searchActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */
@@ -190,7 +207,7 @@ public class SEARCHBOOK extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable jTable1;
     private javax.swing.JButton search;
     private javax.swing.JTextField searchtext;
     // End of variables declaration//GEN-END:variables

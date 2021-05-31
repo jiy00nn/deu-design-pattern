@@ -20,6 +20,7 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.UUID;
 
 /**
  * DB를 사용해 User Table의 데이터를 조회하거나 조작하는 기능을 구현한 클래스
@@ -45,41 +46,41 @@ public class UserDao {
      * DB 사용 예시를 위해 만든 메소드로 삭제해도 무방
      * @return result Insert문 성공시 1을 실패시 0을 반환
     **/
-    public int InsertData(UserDto user){
-        // result 수행 결과
-        int result = 0;
-        // DB 연결을 한 connection 객체
-        Connection conn = db.connectDB();
-        // SQL구문을 실행시키는 기능을 갖는 객체
-        PreparedStatement pstm = null;
-        // 쿼리를 실행한 결과를 받을 수 있다.
-        ResultSet rs = null;
-        
-        //SQL 문장 생성
-        StringBuffer sql = new StringBuffer();
-        sql.append("INSERT INTO USER (user_number, id, password, name) VALUES (?,?,?,?)");
-        
-        // 기능 생성시 아래와 같은 구조를 사용하여 close()를 해주어야 합니다.
-        try{
-            pstm = conn.prepareStatement(sql.toString());
-            
-            pstm.setInt(1, user.getUserNumber());
-            pstm.setString(2, user.getId());
-            pstm.setString(3, user.getPassword());
-            pstm.setString(4, user.getName());
-            
-            result = pstm.executeUpdate();
-            
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            if (rs != null) try { rs.close(); } catch(Exception e) {}
-            if (pstm != null) try { pstm.close(); } catch(Exception e) {}
-            if (conn != null) try { conn.close(); } catch(Exception e) {}
-        }
-        
-        return result;
-    }
+//    public int InsertData(UserDto user){
+//        // result 수행 결과
+//        int result = 0;
+//        // DB 연결을 한 connection 객체
+//        Connection conn = db.connectDB();
+//        // SQL구문을 실행시키는 기능을 갖는 객체
+//        PreparedStatement pstm = null;
+//        // 쿼리를 실행한 결과를 받을 수 있다.
+//        ResultSet rs = null;
+//        
+//        //SQL 문장 생성
+//        StringBuffer sql = new StringBuffer();
+//        sql.append("INSERT INTO USER (user_number, id, password, name) VALUES (?,?,?,?)");
+//        
+//        // 기능 생성시 아래와 같은 구조를 사용하여 close()를 해주어야 합니다.
+//        try{
+//            pstm = conn.prepareStatement(sql.toString());
+//            
+//            pstm.setInt(1, user.getUserNumber());
+//            pstm.setString(2, user.getId());
+//            pstm.setString(3, user.getPassword());
+//            pstm.setString(4, user.getName());
+//            
+//            result = pstm.executeUpdate();
+//            
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        } finally {
+//            if (rs != null) try { rs.close(); } catch(Exception e) {}
+//            if (pstm != null) try { pstm.close(); } catch(Exception e) {}
+//            if (conn != null) try { conn.close(); } catch(Exception e) {}
+//        }
+//        
+//        return result;
+//    }
     
     public void SelectData(){       //데이터베이스에 입력되어있는 값을 ArrayList형식으로 불러오는 메소드
         Connection conn = db.connectDB();        
@@ -95,7 +96,7 @@ public class UserDao {
             rs = pstm.executeQuery();
             
             while(rs.next()){
-                user.add(new UserDto(rs.getInt("user_number"), rs.getString(2), rs.getString(3), rs.getString(4)));
+                user.add(new UserDto(UUID.fromString(rs.getString("user_number")), rs.getString(2), rs.getString(3), rs.getString(4)));
             }
             
         } catch (SQLException e) {
@@ -107,7 +108,7 @@ public class UserDao {
         }
     }
     
-    public void InputData(int user_number, String id, String password, String name){    //데이버베이스에 값을 입력하기 위한 메소드
+    public void InputData(UUID user_number, String id, String password, String name){    //데이버베이스에 값을 입력하기 위한 메소드
         int result = 0;
         Connection conn = db.connectDB();
         // SQL구문을 실행시키는 기능을 갖는 객체
@@ -123,7 +124,7 @@ public class UserDao {
         try{
             pstm = conn.prepareStatement(sql.toString());
             
-            pstm.setInt(1, user_number);
+            pstm.setString(1, user_number.toString());
             pstm.setString(2, id);
             pstm.setString(3, password);
             pstm.setString(4, name);
@@ -139,7 +140,7 @@ public class UserDao {
         }
     }
     
-    public void UpdateData(int user_number, String password, String name){
+    public void UpdateData(UUID user_number, String password, String name){
         int result = 0;
         Connection conn = db.connectDB();        
         PreparedStatement pstm = null;
@@ -154,7 +155,7 @@ public class UserDao {
             
             pstm.setString(1, password);
             pstm.setString(2, name);
-            pstm.setInt(3, user_number);
+            pstm.setString(3, user_number.toString());
             
            result = pstm.executeUpdate();                      
         } catch (SQLException e) {
