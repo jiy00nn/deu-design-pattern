@@ -11,12 +11,14 @@
  */
 package dto;
 
+import java.util.UUID;
+
 /**
  * User의 정보를 담고 있는 DTO class이다.
  */
 public class UserDto {
     // ERD User table의 필드를 참고하여 선언
-    private int user_number;
+    private UUID user_number;
     private String id;
     private String password;
     private String name;
@@ -24,21 +26,23 @@ public class UserDto {
     public UserDto() {}
     
     // 모든 필드의 값을 생성자의 인자로 전달 받는 생성자 generate
-    public UserDto(int user_number, String id, String password, String name){
+    public UserDto(UUID user_number, String id, String password, String name){
         super();
         this.user_number = user_number;
         this.id = id;
         this.password = password;
         this.name = name;
     }
-    
-    public int getUserNumber(){
+
+    public UUID getUser_number() {
         return user_number;
     }
-    
-    public void setUserNumber(int user_number){
+
+    public void setUser_number(UUID user_number) {
         this.user_number = user_number;
     }
+    
+    
     
     public String getId(){
         return id;

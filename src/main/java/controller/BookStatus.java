@@ -7,6 +7,7 @@ package controller;
 
 import dao.BookDao;
 import dto.BookDto;
+import java.util.Date;
 import java.util.UUID;
 import view.TestView;
 
@@ -21,7 +22,7 @@ public class BookStatus {
         this.statu = statu;
     }
     
-    public void status(){
-        statu.status();
+    public boolean status(UUID user_number, UUID book_id, Date rental_date, Date return_date){
+        return statu.status(user_number,  book_id, rental_date, return_date);
     }
 }

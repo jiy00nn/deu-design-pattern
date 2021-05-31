@@ -24,7 +24,8 @@ public class BookDao {
         }
         return bookDao;
     }
-
+    
+    // 책의 정보를 입력하기위한 메소드
     public void InputData(UUID id, String title, String genre, String author, String status, int count) { //추가기능        
         Connection conn = db.connectDB();
         PreparedStatement pstm = null;
@@ -36,10 +37,10 @@ public class BookDao {
             pstm = conn.prepareStatement(sql.toString());
 
             pstm.setString(1, id.toString());
-            pstm.setString(2, "");
-            pstm.setString(3, "");
-            pstm.setString(4, "");
-            pstm.setString(5, "asd");
+            pstm.setString(2, title);
+            pstm.setString(3, genre);
+            pstm.setString(4, author);
+            pstm.setString(5, status);
             pstm.setInt(6, count);
 
             System.out.println(pstm);
@@ -62,7 +63,8 @@ public class BookDao {
         }
 
     }
-
+    
+    // 책의 정보를 가져오기위한 베소드
     public void SelectData() {
         Connection conn = db.connectDB();
         PreparedStatement pstm = null;
@@ -97,7 +99,8 @@ public class BookDao {
             }
         }
     }
-
+    
+    // 책의 전체적인 정보를 수정하기위한 메소드
     public int ModifyBook() {
         int result = 0;
 
@@ -179,7 +182,8 @@ public class BookDao {
 
         return result;
     }
-
+    
+    // 책의 대여 상태를 수정하기위한 메소드
     public void UpdateData(UUID id, String status, int count) {
         int result = 0;
         Connection conn = db.connectDB();

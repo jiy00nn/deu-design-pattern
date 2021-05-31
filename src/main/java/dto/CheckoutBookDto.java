@@ -11,45 +11,60 @@
  */
 package dto;
 
+import java.util.Date;
+import java.util.UUID;
+
 /**
  * CheckoutBook의 정보를 담고 있는 DTO class이다.
  */
 public class CheckoutBookDto {
-    private String user_id;
-    private String book_id;
-    private String date;
+    private UUID user_id;
+    private UUID book_id;
+    private Date rental_date;
+    private Date return_date;
     
     CheckoutBookDto() {}
     
-    CheckoutBookDto(String user_id, String book_id, String date) {
+    public CheckoutBookDto(UUID user_id, UUID book_id, Date rental_date, Date return_date) {
         super();
         this.user_id = user_id;
         this.book_id = book_id;
-        this.date = date;
+        this.rental_date = rental_date;
+        this.return_date = return_date;
     }
     
-    public String getUserId(){
+    public UUID getUserId(){
         return user_id;
     }
     
-    public void setUserId(String user_id){
+    public void setUserId(UUID user_id){
         this.user_id = user_id;
     }
     
-    public String getBookId(){
+    public UUID getBookId(){
         return book_id;
     }
     
-    public void setBookId(String book_id){
+    public void setBookId(UUID book_id){
         this.book_id = book_id;
     }
-    
-    public String getDate(){
-        return date;
+
+    public Date getRental_date() {
+        return rental_date;
+    }
+
+    public void setRental_date(Date rental_date) {
+        this.rental_date = rental_date;
+    }
+
+    public Date getReturn_date() {
+        return return_date;
+    }
+
+    public void setReturn_date(Date return_date) {
+        this.return_date = return_date;
     }
     
-    public void setDate(String date){
-        this.date = date;
-    }
+   
     
 }

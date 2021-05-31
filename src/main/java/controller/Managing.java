@@ -11,15 +11,18 @@
  */
 package controller;
 
+import dao.UserDao;
+import java.util.ArrayList;
+import java.util.UUID;
+
 /**
  *
  * @author wndgk
  */
 public abstract class Managing {
     private String name;
-    private SearchStrategy searchStrategy;
-    private ManagementStrategy managementStrategy;
     
+    ArrayList list = new ArrayList();
     public Managing(String name){
         this.name = name;
     }
@@ -28,25 +31,28 @@ public abstract class Managing {
         return name;
     }
     
-    public void search(String id, String name){
-        searchStrategy.search(id, name);
+    public ArrayList Search(String id, String name){
+        BookSearchIterator booksearchiterator = new BookSearchIterator(id, name);
+        IteratorBookSearch iteratorbooksearch = new IteratorBookSearch(booksearchiterator);
+        list =iteratorbooksearch.printList();        
+        return list;   
+//        return searchStrategy.Search(id, name);
     }
     
     public void update(){
-        managementStrategy.update();
+        
     }
     
-    public void modify(){
-        managementStrategy.modify();
-    }
-
-    public void setSearchStrategy(SearchStrategy searchStrategy) {
-        this.searchStrategy = searchStrategy;
-    }
-
-    public void setManagementStrategy(ManagementStrategy managementStrategy) {
-        this.managementStrategy = managementStrategy;
-    }
-    
-    
+    public boolean modify(UUID id, String pw, String name){
+        UserDao userdao = new UserDao();
+        boolean result = false;
+        for(int i = 0; i < userdao.user.size(); i++){
+            if(userdao.user.get(i).getUser_number().toString().equals(id.toString())){
+                userdao.UpdateData(id, pw, name);        
+                result = true;
+                break;
+            }            
+        }        
+        return result;
+    }       
 }

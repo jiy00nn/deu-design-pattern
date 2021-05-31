@@ -140,11 +140,8 @@ public class SIGNUP extends javax.swing.JFrame {
 
     private void signupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupActionPerformed
         // TODO add your handling code here:
-        if(name.getText().length() <= 4){
-            login.userdto.setId(id.getText());
-            login.userdto.setPassword(pw.getText());
-            login.userdto.setName(name.getText());
-            if(login.usercontrol.Signup()){
+        if(name.getText().length() <= 4){            
+            if(login.usercontrol.Signup(name.getText(), id.getText(), pw.getText())){
                 JOptionPane.showMessageDialog(null, "회원가입 성공");
                 LOGIN l = new LOGIN();
                 l.setVisible(true);

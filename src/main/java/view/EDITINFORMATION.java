@@ -5,17 +5,29 @@
  */
 package view;
 
+import static controller.UserController.flag;
+import java.util.UUID;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author anime
  */
 public class EDITINFORMATION extends javax.swing.JFrame {
-
+    LOGIN login = new LOGIN();
     /**
      * Creates new form EDITINFORMATION
-     */
+     */    
     public EDITINFORMATION() {
-        initComponents();
+        initComponents();          
+         System.out.println((login.userdao.user.get(flag).getName()));
+        System.out.println(login.userdao.user.get(flag).getId());
+        System.out.println(login.userdao.user.get(flag).getPassword());
+        System.out.println(login.userdao.user.get(flag).getUser_number().toString());
+        name.setText(login.userdao.user.get(flag).getName());
+        id.setText(login.userdao.user.get(flag).getId());
+        pw.setText(login.userdao.user.get(flag).getPassword());
+        number.setText(login.userdao.user.get(flag).getUser_number().toString());
     }
 
     /**
@@ -45,7 +57,7 @@ public class EDITINFORMATION extends javax.swing.JFrame {
         jLabel1.setText("정보수정");
 
         back.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
-        back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/back.png"))); // NOI18N
+        back.setText("뒤로가기");
         back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backActionPerformed(evt);
@@ -74,6 +86,11 @@ public class EDITINFORMATION extends javax.swing.JFrame {
 
         edit.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
         edit.setText("수정");
+        edit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,7 +101,7 @@ public class EDITINFORMATION extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(edit)
-                        .addGap(96, 96, 96)
+                        .addGap(61, 61, 61)
                         .addComponent(back))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(48, 48, 48)
@@ -147,9 +164,23 @@ public class EDITINFORMATION extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_backActionPerformed
 
+    private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
+        // TODO add your handling code here:        
+        MAIN main = new MAIN();
+        if(main.managing.modify(UUID.fromString(number.getText()), pw.getText(), name.getText())){        
+            JOptionPane.showMessageDialog(null, "정보 수정 성공");            
+            main.setVisible(true);
+            dispose();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "정보 수정 실패");
+        }
+    }//GEN-LAST:event_editActionPerformed
+
     /**
      * @param args the command line arguments
      */
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -176,9 +207,10 @@ public class EDITINFORMATION extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EDITINFORMATION().setVisible(true);
+                new EDITINFORMATION().setVisible(true);                        
             }
         });
     }

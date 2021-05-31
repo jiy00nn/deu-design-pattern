@@ -5,17 +5,21 @@
  */
 package view;
 
+import controller.Managing;
+import controller.ManagingFactory;
+
 /**
  *
  * @author anime
  */
 public class MAIN extends javax.swing.JFrame {
-
+    ManagingFactory mf = new ManagingFactory();
+    Managing managing = mf.getManaging("User");
     /**
      * Creates new form MAIN
      */
     public MAIN() {
-        initComponents();
+        initComponents();                
     }
 
     /**
@@ -29,10 +33,10 @@ public class MAIN extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         findbook = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        editinformation = new javax.swing.JButton();
-        donate = new javax.swing.JButton();
+        RentalBook = new javax.swing.JButton();
+        ReturnBook = new javax.swing.JButton();
+        ModifyInformation = new javax.swing.JButton();
+        logout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,35 +51,34 @@ public class MAIN extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
-        jButton2.setText("도서대출");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        RentalBook.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
+        RentalBook.setText("도서대출");
+        RentalBook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                RentalBookActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
-        jButton3.setText("도서반납");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        ReturnBook.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
+        ReturnBook.setText("도서반납");
+        ReturnBook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                ReturnBookActionPerformed(evt);
             }
         });
 
-        editinformation.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
-        editinformation.setText("정보수정");
-        editinformation.addActionListener(new java.awt.event.ActionListener() {
+        ModifyInformation.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
+        ModifyInformation.setText("정보수정");
+        ModifyInformation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editinformationActionPerformed(evt);
+                ModifyInformationActionPerformed(evt);
             }
         });
 
-        donate.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
-        donate.setText("기증도서");
-        donate.addActionListener(new java.awt.event.ActionListener() {
+        logout.setText("로그아웃");
+        logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                donateActionPerformed(evt);
+                logoutActionPerformed(evt);
             }
         });
 
@@ -86,64 +89,71 @@ public class MAIN extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(157, 157, 157)
                 .addComponent(jLabel1)
-                .addContainerGap(139, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(logout)
+                .addGap(25, 25, 25))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(donate)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(editinformation)
-                        .addComponent(jButton3)
-                        .addComponent(jButton2)
-                        .addComponent(findbook)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(ModifyInformation)
+                    .addComponent(ReturnBook)
+                    .addComponent(RentalBook)
+                    .addComponent(findbook))
                 .addGap(148, 148, 148))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(logout))
                 .addGap(18, 18, 18)
                 .addComponent(findbook)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(RentalBook)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(ReturnBook)
                 .addGap(18, 18, 18)
-                .addComponent(editinformation)
-                .addGap(18, 18, 18)
-                .addComponent(donate)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addComponent(ModifyInformation)
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void findbookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findbookActionPerformed
-        SEARCHBOOK se = new SEARCHBOOK();
-        se.setVisible(true);
+        SEARCHBOOK search = new SEARCHBOOK();
+        search.setVisible(true);
         dispose();
     }//GEN-LAST:event_findbookActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void RentalBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RentalBookActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        Rental rental = new Rental();
+        rental.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_RentalBookActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void ReturnBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnBookActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        Return_Book return_book = new Return_Book();
+        return_book.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_ReturnBookActionPerformed
 
-    private void editinformationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editinformationActionPerformed
+    private void ModifyInformationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifyInformationActionPerformed
         EDITINFORMATION e = new EDITINFORMATION();
         e.setVisible(true);
         dispose();
-    }//GEN-LAST:event_editinformationActionPerformed
+    }//GEN-LAST:event_ModifyInformationActionPerformed
 
-    private void donateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_donateActionPerformed
-        DONATEBOOK d = new DONATEBOOK();
-        d.setVisible(true);
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        // TODO add your handling code here:
+        LOGIN log = new LOGIN();
+        log.setVisible(true);
         dispose();
-    }//GEN-LAST:event_donateActionPerformed
+    }//GEN-LAST:event_logoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,11 +192,11 @@ public class MAIN extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton donate;
-    private javax.swing.JButton editinformation;
+    private javax.swing.JButton ModifyInformation;
+    private javax.swing.JButton RentalBook;
+    private javax.swing.JButton ReturnBook;
     private javax.swing.JButton findbook;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton logout;
     // End of variables declaration//GEN-END:variables
 }

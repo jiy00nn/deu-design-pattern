@@ -8,6 +8,7 @@ package view;
 import controller.UserController;
 import dao.UserDao;
 import dto.UserDto;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,14 +16,13 @@ import dto.UserDto;
  */
 public class LOGIN extends javax.swing.JFrame {
      UserDao  userdao = new UserDao();
-     UserDto  userdto = new UserDto();
-     TestView testview = new TestView();        
-     UserController usercontrol = new UserController(userdto, userdao, testview);
+     UserDto  userdto = new UserDto();     
+     UserController usercontrol = new UserController(userdto, userdao);
     /**
      * Creates new form login
      */
     public LOGIN() {
-        initComponents();
+        initComponents();        
     }
 
     /**
@@ -155,13 +155,12 @@ public class LOGIN extends javax.swing.JFrame {
     }//GEN-LAST:event_idActionPerformed
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-        // TODO add your handling code here:
-        userdto.setId(id.getText());
-        userdto.setPassword(pw.getText());
-        if(usercontrol.Login()){
+        // TODO add your handling code here:        
+        if(usercontrol.Login(id.getText(), pw.getText())){
             System.out.println("Login success");
             System.out.println(id.getText());
             System.out.println(pw.getText());
+            JOptionPane.showMessageDialog(null, "로그인 성공");
             MAIN main = new MAIN();
             main.setVisible(true);
             dispose();
@@ -192,7 +191,7 @@ public class LOGIN extends javax.swing.JFrame {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());                    
                     break;
                 }
             }
@@ -207,11 +206,12 @@ public class LOGIN extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new LOGIN().setVisible(true);
+                
             }
         });
     }

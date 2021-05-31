@@ -5,12 +5,14 @@
  */
 package view;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author anime
  */
 public class FINDPW extends javax.swing.JFrame {
-
+    LOGIN login = new LOGIN();
     /**
      * Creates new form FINDPW
      */
@@ -31,9 +33,9 @@ public class FINDPW extends javax.swing.JFrame {
         back = new javax.swing.JButton();
         find = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        name = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,16 +53,21 @@ public class FINDPW extends javax.swing.JFrame {
 
         find.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
         find.setText("찾기");
+        find.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                findActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
         jLabel2.setText("이름 : ");
 
-        jTextField1.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
+        name.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
         jLabel3.setText("ID : ");
 
-        jTextField2.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
+        id.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,10 +91,10 @@ public class FINDPW extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addGap(20, 20, 20)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -103,11 +110,11 @@ public class FINDPW extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addComponent(find)
                 .addGap(19, 19, 19)
@@ -123,6 +130,18 @@ public class FINDPW extends javax.swing.JFrame {
         l.setVisible(true);
         dispose();
     }//GEN-LAST:event_backActionPerformed
+
+    private void findActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findActionPerformed
+        // TODO add your handling code here:
+        if(login.usercontrol.FindPassword(name.getText(), id.getText())){
+            LOGIN l = new LOGIN();
+            l.setVisible(true);
+            dispose();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "이름과 아이디를 확인하세요.");
+        }
+    }//GEN-LAST:event_findActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,10 +182,10 @@ public class FINDPW extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
     private javax.swing.JButton find;
+    private javax.swing.JTextField id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField name;
     // End of variables declaration//GEN-END:variables
 }
