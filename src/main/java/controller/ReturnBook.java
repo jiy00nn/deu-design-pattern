@@ -12,10 +12,11 @@ import java.util.UUID;
  *
  * @author wndgk
  */
-public class ReturnBook implements Status{
+public class ReturnBook implements Status {
+
     @Override
-    public boolean status(UUID user_number, UUID book_id, Date rental_date, Date return_date){
-                boolean result = false;
+    public boolean status(UUID user_number, UUID book_id, Date rental_date, Date return_date) {
+        boolean result = false;
 
         if (!bookdao.book.isEmpty()) {
             for (int i = 0; i < bookdao.book.size(); i++) {

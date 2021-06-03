@@ -3,7 +3,6 @@ package controller;
 import dto.BookDto;
 import dao.BookDao;
 import dao.BookDao;
-import view.TestView;
 import java.util.UUID;
 
 /**
@@ -13,8 +12,7 @@ import java.util.UUID;
 public class BookController {
 
     private BookDto bookdto;
-    private BookDao bookdao;
-    private TestView view;
+    private BookDao bookdao;    
 
     public BookController(BookDto bookdto, BookDao bookdao) {
         this.bookdto = bookdto;

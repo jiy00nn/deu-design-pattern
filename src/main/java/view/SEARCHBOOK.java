@@ -154,7 +154,7 @@ public class SEARCHBOOK extends javax.swing.JFrame {
     }//GEN-LAST:event_backActionPerformed
 
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
-        ArrayList<BookDto> printlist = main.managing.Search(searchtext.getText(), "");
+        ArrayList<BookDto> printlist = main.managing.Search(searchtext.getText());
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setNumRows(0);        
         for(int i = 0; i < printlist.size(); i++){

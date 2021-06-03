@@ -31,17 +31,13 @@ public abstract class Managing {
         return name;
     }
     
-    public ArrayList Search(String id, String name){
-        BookSearchIterator booksearchiterator = new BookSearchIterator(id, name);
+    public ArrayList Search(String str){
+        BookSearchIterator booksearchiterator = new BookSearchIterator(str);
         IteratorBookSearch iteratorbooksearch = new IteratorBookSearch(booksearchiterator);
         list =iteratorbooksearch.printList();        
         return list;   
 //        return searchStrategy.Search(id, name);
-    }
-    
-    public void update(){
-        
-    }
+    }    
     
     public boolean modify(UUID id, String pw, String name){
         UserDao userdao = new UserDao();

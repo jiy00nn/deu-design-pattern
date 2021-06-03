@@ -200,10 +200,7 @@ public class Rental extends javax.swing.JFrame {
                 rental_date.setText(fm.format(date));
                 return_date.setText(fm.format(date2));
             }
-        }
-        System.out.println(date);
-        System.out.println(date2);
-        
+        }       
     }//GEN-LAST:event_checkActionPerformed
 
     private void rentalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rentalActionPerformed
