@@ -8,8 +8,6 @@ package controller;
 import dto.BookDto;
 import java.util.ArrayList;
 import java.util.Iterator;
-import javax.swing.table.DefaultTableModel;
-import view.SEARCHBOOK;
 
 /**
  *
@@ -18,8 +16,7 @@ import view.SEARCHBOOK;
 public class IteratorBookSearch {
 
     SearchIterator bsearchiterator;
-    ArrayList<BookDto> booklist = new ArrayList<>();
-    SEARCHBOOK search = new SEARCHBOOK();
+    ArrayList<BookDto> booklist = new ArrayList<>();    
 
     public IteratorBookSearch(SearchIterator bsearchiterator) {
         this.bsearchiterator = bsearchiterator;
@@ -37,7 +34,6 @@ public class IteratorBookSearch {
         while (iterator.hasNext()) {
             BookDto bookdto = (BookDto) iterator.next();            
             booklist.add(new BookDto(bookdto.getId(), bookdto.getTitle(), bookdto.getGenre(), bookdto.getAuthor(), bookdto.getStatus(), bookdto.getCount()));                
-//            booklist.add("제목 : " + bookdto.getTitle() + " 장르 : " + bookdto.getGenre() + " 저자 : " + bookdto.getAuthor() + " 대여여부 : " + bookdto.getStatus() + " 수량 : " + bookdto.getCount());                
 //            System.out.println("Book Id : " + bookdto.getId().toString());
 //            System.out.println("Book Title : " + bookdto.getTitle());
 //            System.out.println("Book Genre : " + bookdto.getGenre());
